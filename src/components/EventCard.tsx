@@ -21,7 +21,7 @@ export default function EventCard(props: CurrentProps) {
   const [clickArr, setClickArr] = useState<boolean[]>([]);
   const marked: boolean[] = [];
   const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(2);
+  const [rows, setRows] = useState(6);
 
 
   useEffect(() => {
@@ -38,15 +38,11 @@ export default function EventCard(props: CurrentProps) {
     return () => clearInterval(timerAction);
   }, []);
 
-  // const onPageChange = (e: any) => {
-  //   setFirst(e.first);
-  //   setRows(e.rows);
-  // }
 
   return (
     <>
       < div className="container" >
-        {props.issues.map((card: Card, ind: number) => {
+        {props.issues.slice(first, first + rows).map((card: Card, ind: number) => {
           marked[ind] = false;
           return (
             <CardPrime key={ind} className={clickArr[ind]
@@ -79,7 +75,7 @@ export default function EventCard(props: CurrentProps) {
         })
         }
       </div>
-      {/* <Paginator
+      <Paginator
         first={first}
         rows={rows}
         totalRecords={props.issues.length}
@@ -87,22 +83,9 @@ export default function EventCard(props: CurrentProps) {
           setFirst(e.first);
           setRows(e.rows)
         }}
-        rowsPerPageOptions={[2, 4, 6]}
-        className='pag'
-      >
-      </Paginator> */}
-      <Paginator
-        first={first}
-        rows={rows}
-        totalRecords={Math.ceil(props.issues.length / 3)}
-        onPageChange={(e: any) => {
-          setFirst(e.first);
-          setRows(e.rows)
-        }}
-        rowsPerPageOptions={[2, 4, 6]}
+        rowsPerPageOptions={[6, 12, 18]}
         className='pag'
         leftContent
-
       />
     </>
   )
