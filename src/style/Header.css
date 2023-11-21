@@ -42,7 +42,7 @@
   border-radius: 0;
   height: 100%;
   box-shadow: 4px 4px 4px black;
-
+  width: 15vw;
 }
 
 .input:focus {
