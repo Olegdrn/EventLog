@@ -19,10 +19,9 @@ export default function EventCard(props: CurrentProps) {
 
   const [counter, setCounter] = useState<number>(0);
   const [clickArr, setClickArr] = useState<boolean[]>([]);
-  const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(4);
   const marked: boolean[] = [];
-
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(2);
 
 
   useEffect(() => {
@@ -39,10 +38,10 @@ export default function EventCard(props: CurrentProps) {
     return () => clearInterval(timerAction);
   }, []);
 
-  const onPageChange = (e: any) => {
-    setFirst(e.first);
-    setRows(e.rows);
-  }
+  // const onPageChange = (e: any) => {
+  //   setFirst(e.first);
+  //   setRows(e.rows);
+  // }
 
   return (
     <>
@@ -80,7 +79,31 @@ export default function EventCard(props: CurrentProps) {
         })
         }
       </div>
-      <Paginator first={first} rows={rows} totalRecords={120} rowsPerPageOptions={[2, 4, 6]} onPageChange={onPageChange} className='pag'></Paginator>
+      {/* <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={props.issues.length}
+        onPageChange={(e: any) => {
+          setFirst(e.first);
+          setRows(e.rows)
+        }}
+        rowsPerPageOptions={[2, 4, 6]}
+        className='pag'
+      >
+      </Paginator> */}
+      <Paginator
+        first={first}
+        rows={rows}
+        totalRecords={Math.ceil(props.issues.length / 3)}
+        onPageChange={(e: any) => {
+          setFirst(e.first);
+          setRows(e.rows)
+        }}
+        rowsPerPageOptions={[2, 4, 6]}
+        className='pag'
+        leftContent
+
+      />
     </>
   )
 }

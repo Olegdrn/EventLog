@@ -1,6 +1,7 @@
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  border-bottom: 3px solid black;
 }
 
 .list {
@@ -8,6 +9,8 @@
   justify-content: space-between;
   text-align: start;
 }
+
+
 
 p {
   font-size: 9px;

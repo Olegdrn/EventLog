@@ -45,7 +45,6 @@ export default function EventList(props: CurrentProps) {
     <div className="eventList">
       <div>
         <DataTable
-          // selection={1}
           value={props.issues}
           responsiveLayout='stack'
           className='datatable'
