@@ -1,54 +1,61 @@
 import { useState, useEffect, FunctionComponent } from 'react';
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css"
+import { Menubar } from 'primereact/menubar';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+import "../style/Header.css";
+import { Card } from "../types";
+import { Dispatch, SetStateAction } from 'react';
 
-const NavItem: FunctionComponent<{
-  active: string
-  setActive: Function
-  name: string
-  route: string
-}> = ({ active, setActive, name, route }) => {
-  return active !== name ? (
-    <a>
-      <span
-        className='mx-2 cursor-pointer hover:border-b-4 hover:text-blue-500'
-        onClick={() => setActive(name)}>
-        {name}
-      </span>
-    </a>
-  ) : null
+type CurrentProps = {
+  issues: Card[]
+  setIssues: Dispatch<SetStateAction<Card[]>>
+}
+
+interface NavItem {
+  label: string;
+  command: any;
 }
 
 
+export default function Header(props: CurrentProps) {
+  const [value, setValue] = useState<string>('')
 
-export default function Header() {
+  const Navlist: NavItem[] = [
+    {
+      label: 'Таблица', command: () => {
+        window.location.href = '/';
+      }
+    },
+    {
+      label: 'Карточки', command: () => {
+        window.location.href = '/Cards'
+      }
+    }
+  ]
+  let filtered: Card[] = [];
 
-  const [active, setActive] = useState('')
+  const searching = () => {
+    let regexp: RegExp = new RegExp(value, 'mi');
 
-  //later
-  // useEffect(() => {
-  //   if (pathname === '/') setActive('About')
-  //   else if (pathname === '/projects') setActive('Projects')
-  // }, [])
+    filtered = props.issues.filter((card: Card) => {
+      return regexp.test(card.Message);
+    });
+    props.setIssues(filtered)
+  }
 
   return (
     <div className="eventCard">
-      <span className='font-bold border-b-4 text-2xl border-blue-500'>
-        {active}
-      </span>
-
-      <div className='text-2xl font-bold'>
-        <NavItem
-          active={active}
-          setActive={setActive}
-          name='About'
-          route='/'
+      <Menubar
+        className='nav'
+        model={Navlist}
+        end={<InputText placeholder="" type="text" className="input"
+          onChange={(e) => setValue(e.target.value)}
         />
-        <NavItem
-          active={active}
-          setActive={setActive}
-          name='Projects'
-          route='/projects'
-        />
-      </div>
+        }
+      />
+      <Button label="Поиск" className="button" onClick={searching} />
     </div>
   )
 }
