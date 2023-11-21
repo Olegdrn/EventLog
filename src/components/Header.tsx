@@ -26,7 +26,7 @@ export default function Header(props: CurrentProps) {
     {
       label: 'Таблица', command: () => {
         window.location.href = '/';
-      }
+      },
     },
     {
       label: 'Карточки', command: () => {
@@ -50,12 +50,13 @@ export default function Header(props: CurrentProps) {
       <Menubar
         className='nav'
         model={Navlist}
-        end={<InputText placeholder="" type="text" className="input"
+      />
+      <div className='rightSide'>
+        <InputText placeholder="" type="text" className="input"
           onChange={(e) => setValue(e.target.value)}
         />
-        }
-      />
-      <Button label="Поиск" className="button" onClick={searching} />
+        <Button label="Поиск" className="button" onClick={searching} />
+      </div>
     </div>
   )
 }
