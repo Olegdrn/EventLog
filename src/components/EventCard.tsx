@@ -18,9 +18,11 @@ export default function EventCard(props: CurrentProps) {
 
 
   const [counter, setCounter] = useState<number>(0);
-  const [marked, setmarked] = useState<boolean>(false);
+  const [clickArr, setClickArr] = useState<boolean[]>([]);
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(4);
+  const marked: boolean[] = [];
+
 
 
   useEffect(() => {
@@ -31,7 +33,6 @@ export default function EventCard(props: CurrentProps) {
       i = i + 1;
       setCounter((prevCounter: number) => prevCounter + 1);
       arr.push(eventArray[i]);
-      console.log(typeof (eventArray[i].Date))
       props.setIssues(arr)
     }, 5000);
 
@@ -43,16 +44,19 @@ export default function EventCard(props: CurrentProps) {
     setRows(e.rows);
   }
 
-
   return (
     <>
       < div className="container" >
-        {props.issues.map((card, ind) => {
+        {props.issues.map((card: Card, ind: number) => {
+          marked[ind] = false;
           return (
-            <CardPrime key={ind} className={marked
+            <CardPrime key={ind} className={clickArr[ind]
               ? " bg-blue-100 cursor-pointer w-10 p-0  m-3"
-              : " cursor-pointer w-10 p-0 m-3"}
-              onClick={() => { setmarked(!marked) }}>
+              : "bg-gray-200  cursor-pointer w-10 p-0 m-3"}
+              onClick={() => {
+                marked[ind] = true
+                setClickArr(marked)
+              }}>
               <div className='list'>
                 <div className='rows'>
                   <p>Дата</p>
@@ -67,7 +71,7 @@ export default function EventCard(props: CurrentProps) {
                   <p>{card.Message}</p>
                 </div>
                 <div className='person'>
-                  <Avatar label="" size="xlarge" shape="circle" />
+                  <Avatar label="" size="xlarge" shape="circle" color='blue' />
                   <p>{card.Employee}</p>
                 </div>
               </div>

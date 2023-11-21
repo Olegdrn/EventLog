@@ -32,7 +32,6 @@ export default function EventList(props: CurrentProps) {
       i = i + 1;
       setCounter((prevCounter: number) => prevCounter + 1);
       arr.push(eventArray[i]);
-      console.log(typeof (eventArray[i].Date))
       props.setIssues(arr)
     }, 5000);
 
