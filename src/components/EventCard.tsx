@@ -20,7 +20,7 @@ export default function EventCard(props: CurrentProps) {
   const [counter, setCounter] = useState<number>(0);
   const [marked, setmarked] = useState<boolean>(false);
   const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(2);
+  const [rows, setRows] = useState(4);
 
 
   useEffect(() => {
