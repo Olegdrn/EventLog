@@ -46,6 +46,18 @@
   }
 }
 
+@media (max-width:950px) {
+
+  .header {
+    font-size: 10px;
+  }
+
+  .column {
+    font-size: 8px;
+  }
+
+}
+
 @media (max-width:450px) {
 
   .datatable {

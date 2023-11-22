@@ -45,6 +45,7 @@ export default function EventList(props: CurrentProps) {
     <div className="eventList">
       <div>
         <DataTable
+          removableSort
           value={props.issues}
           responsiveLayout='stack'
           className='datatable'
@@ -66,7 +67,7 @@ export default function EventList(props: CurrentProps) {
           <Column field='Importance' header='Важность' headerClassName='header' className='column'></Column>
           <Column field='Equipment' header='Оборудование' headerClassName='header' className='column'></Column>
           <Column field='Message' header='Сообщение' headerClassName='header' className='column'></Column>
-          <Column field='Employee' header='Ответственный' headerClassName='header' className='column'></Column>
+          <Column field='Employee' header='Ответственный' headerClassName='header' className='column' sortable ></Column>
         </DataTable>
       </div>
     </div>
