@@ -21,7 +21,7 @@ export default function EventCard(props: CurrentProps) {
   const [clickArr, setClickArr] = useState<boolean[]>([]);
   const marked: boolean[] = [];
   const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(6);
+  const [rows, setRows] = useState(4);
 
 
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function EventCard(props: CurrentProps) {
           setFirst(e.first);
           setRows(e.rows)
         }}
-        rowsPerPageOptions={[6, 12, 18]}
+        rowsPerPageOptions={[4, 8, 12]}
         className='pag'
         leftContent
       />

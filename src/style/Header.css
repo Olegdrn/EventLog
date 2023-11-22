@@ -7,7 +7,6 @@
 
 .nav {
   border-radius: 0;
-  padding: 0;
   border: 2px solid black;
   box-shadow: 5px 5px 5px black;
 }
@@ -18,7 +17,8 @@
 }
 
 .p-menuitem-link:hover {
-  background-color: rgb(203, 220, 241) !important;
+  background-color: rgb(173, 192, 215) !important;
+  border: 3px solid black;
 }
 
 
@@ -47,4 +47,36 @@
 
 .input:focus {
   background-color: rgb(203, 220, 241);
+}
+
+
+@media (max-width:965px) {
+
+  .p-menuitem {
+    font-size: 12px;
+    width: 15vw;
+    height: 20px;
+    background-color: rgb(244, 246, 249);
+  }
+
+  .p-menuitem-link {
+    padding: 0;
+  }
+
+  .nav {
+    border: 0px solid black;
+    box-shadow: none;
+  }
+
+}
+
+@media (max-width:500px) {
+
+  .p-menuitem-link {
+    font-size: 10px;
+  }
+
+  .paginator {
+    font-size: 8px;
+  }
 }

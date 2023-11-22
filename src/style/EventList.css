@@ -29,3 +29,30 @@
 .column:last-child {
   border-right: 3px solid black;
 }
+
+@media (max-width:1100px) {
+
+  .eventList {
+    margin-top: 70px;
+  }
+
+  .header {
+    font-size: 14px;
+  }
+
+
+  .column {
+    font-size: 12px;
+  }
+}
+
+@media (max-width:450px) {
+
+  .datatable {
+    font-size: 8px;
+  }
+
+  .paginator {
+    font-size: 8px;
+  }
+}
