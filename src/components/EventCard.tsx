@@ -38,6 +38,10 @@ export default function EventCard(props: CurrentProps) {
     return () => clearInterval(timerAction);
   }, []);
 
+  const onKeyDown = (e: any) => {
+
+  }
+
 
   return (
     <>
@@ -51,7 +55,9 @@ export default function EventCard(props: CurrentProps) {
               onClick={() => {
                 marked[ind] = true
                 setClickArr(marked)
-              }}>
+              }}
+            // onKeyDown={onKeyDown ? "b"}
+            >
               <div className='list'>
                 <div className='rows'>
                   <p>Дата</p>

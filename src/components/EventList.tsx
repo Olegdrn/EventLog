@@ -21,7 +21,7 @@ export default function EventList(props: CurrentProps) {
   // const { issues, setIssues } = useContext(MyContext)
 
   const [counter, setCounter] = useState<number>(0);
-  const [marked, Setmarked] = useState<any>();
+  const [selectedProducts, setSelectedProducts] = useState<Card[]>([])
 
 
   useEffect(() => {
@@ -51,12 +51,11 @@ export default function EventList(props: CurrentProps) {
           className='datatable'
           emptyMessage='Список событий пуст, дождитесь загрузки...'
           paginatorTemplate="FirstPageLink PrevPageLink  PageLinks  NextPageLink LastPageLink RowsPerPageDropdown"
-          //CurrentPageReport 
           selectionMode="multiple"
-          selection={marked}
-          onSelectionChange={(e) => Setmarked(e.value)}
-          // selectAll={selectAll}
-          // onSelectAllChange={(e) => setSelectAll(e.checked)}
+          selection={selectedProducts}
+          onSelectionChange={(e) => setSelectedProducts(e.value)}
+          dataKey="Importance"
+          dragSelection
           paginator
           rows={10}
           paginatorClassName='paginator'
