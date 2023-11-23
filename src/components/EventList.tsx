@@ -21,7 +21,7 @@ export default function EventList(props: CurrentProps) {
   // const { issues, setIssues } = useContext(MyContext)
 
   const [counter, setCounter] = useState<number>(0);
-  const [selectedProducts, setSelectedProducts] = useState<Card[]>([])
+  const [selectedProducts, setSelectedProducts] = useState<any>(null)
 
 
   useEffect(() => {
@@ -51,11 +51,14 @@ export default function EventList(props: CurrentProps) {
           className='datatable'
           emptyMessage='Список событий пуст, дождитесь загрузки...'
           paginatorTemplate="FirstPageLink PrevPageLink  PageLinks  NextPageLink LastPageLink RowsPerPageDropdown"
-          selectionMode="multiple"
+          selectionMode="single"
           selection={selectedProducts}
           onSelectionChange={(e) => setSelectedProducts(e.value)}
-          dataKey="Importance"
-          dragSelection
+          //Optional
+          // selectionMode="multiple"
+          // selection={selectedProducts}
+          // onSelectionChange={(e) => setSelectedProducts(e.value)}
+          // dataKey="Importance"
           paginator
           rows={10}
           paginatorClassName='paginator'
@@ -66,7 +69,10 @@ export default function EventList(props: CurrentProps) {
           <Column field='Importance' header='Важность' headerClassName='header' className='column'></Column>
           <Column field='Equipment' header='Оборудование' headerClassName='header' className='column'></Column>
           <Column field='Message' header='Сообщение' headerClassName='header' className='column'></Column>
-          <Column field='Employee' header='Ответственный' headerClassName='header' className='column' sortable ></Column>
+          <Column field='Employee' header='Ответственный' headerClassName='header' className='column'
+            sortable
+          >
+          </Column>
         </DataTable>
       </div>
     </div>
