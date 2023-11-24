@@ -14,14 +14,17 @@ type CurrentProps = {
   setIssues: Dispatch<SetStateAction<Card[]>>
 }
 
+
+
 export default function EventCard(props: CurrentProps) {
 
 
   const [counter, setCounter] = useState<number>(0);
   const [clickArr, setClickArr] = useState<boolean[]>([]);
   const marked: boolean[] = [];
-  const [first, setFirst] = useState(0);
-  const [rows, setRows] = useState(6);
+  const [first, setFirst] = useState<number>(0);
+  const [rows, setRows] = useState<number>(6);
+  const [keyPress, setKeyPress] = useState<boolean>(false)
 
 
   useEffect(() => {
@@ -38,42 +41,57 @@ export default function EventCard(props: CurrentProps) {
     return () => clearInterval(timerAction);
   }, []);
 
-  const onKeyDown = (e: any) => {
-
+  const onPressKey: any = (e: React.KeyboardEvent) => {
+    if (e.key === " ") {
+      setKeyPress((prev) => !prev);
+    }
   }
+
+  useEffect(() => {
+    document.addEventListener("keydown", onPressKey);
+    return () => {
+      document.removeEventListener("keydown", onPressKey);
+    };
+  }, []);
 
 
   return (
     <>
-      < div className="container" >
+      < div className="container">
         {props.issues.slice(first, first + rows).map((card: Card, ind: number) => {
           marked[ind] = false;
           return (
-            <CardPrime key={ind} className={clickArr[ind]
-              ? " bg-blue-100 cursor-pointer w-10 p-0  m-3"
-              : "bg-gray-200  cursor-pointer w-10 p-0 m-3"}
+            <CardPrime key={ind}
+              className={
+                clickArr[ind]
+                  ? " bg-blue-100 cursor-pointer w-10 p-0 m-2"
+                  : "bg-gray-200  cursor-pointer w-10 p-0 m-3"}
               onClick={() => {
                 marked[ind] = true
                 setClickArr(marked)
+                setKeyPress(false)
               }}
-            // onKeyDown={onKeyDown ? "b"}
             >
-              <div className='list'>
-                <div className='rows'>
-                  <p>Дата</p>
-                  <p>Важность</p>
-                  <p>Оборудование</p>
-                  <p>Сообщение</p>
-                </div>
-                <div className='description'>
-                  <p>{card.Date}</p>
-                  <p>{card.Importance}</p>
-                  <p>{card.Equipment}</p>
-                  <p>{card.Message}</p>
-                </div>
-                <div className='person'>
-                  <Avatar label="" size="xlarge" shape="circle" color='blue' />
-                  <p>{card.Employee}</p>
+              <div
+                className={keyPress && clickArr[ind] ? "bg-red-100 p-1" : ""}
+              >
+                <div className='list'>
+                  <div className='rows'>
+                    <p>Дата</p>
+                    <p>Важность</p>
+                    <p>Оборудование</p>
+                    <p>Сообщение</p>
+                  </div>
+                  <div className='description'>
+                    <p>{card.Date}</p>
+                    <p>{card.Importance}</p>
+                    <p>{card.Equipment}</p>
+                    <p>{card.Message}</p>
+                  </div>
+                  <div className='person'>
+                    <Avatar label="" size="xlarge" shape="circle" color='blue' />
+                    <p>{card.Employee}</p>
+                  </div>
                 </div>
               </div>
             </CardPrime>
