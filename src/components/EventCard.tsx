@@ -45,6 +45,7 @@ export default function EventCard(props: CurrentProps) {
     if (e.key === " ") {
       setKeyPress((prev) => !prev);
     }
+    
   }
 
   useEffect(() => {
@@ -52,7 +53,8 @@ export default function EventCard(props: CurrentProps) {
     return () => {
       document.removeEventListener("keydown", onPressKey);
     };
-  }, []);
+  }, [keyPress]);
+
 
 
   return (
